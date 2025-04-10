@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Authentication Required</title>
+    <style>
+      body {
+        background-color: #000;
+        color: #0f0;
+        font-family: "Courier New", monospace;
+        margin: 0;
+        padding: 20px;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      #terminal {
+        max-width: 800px;
+        margin: auto;
+      }
+      .prompt {
+        color: #0f0;
+        white-space: pre-wrap;
+      }
+      input {
+        background: transparent;
+        border: none;
+        color: #0f0;
+        font-family: "Courier New", monospace;
+        font-size: 1em;
+        width: 200px;
+      }
+      input[type="password"] {
+        color: transparent; /* Hide input characters */
+        caret-color: #0f0; /* Keep cursor visible */
+      }
+      input:focus {
+        outline: none;
+      }
+      .blink {
+        animation: blink 1s step-end infinite;
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="terminal">
+      <div id="output"></div>
+      <div class="prompt">
+        > <span id="question"></span>
+        <input type="text" id="input" autofocus />
+        <span class="blink">_</span>
+      </div>
+    </div>
+
+    <script>
+      const questions = [
+        "Who is this? ",
+        "Rahma, Rahouma? Is that really you? ",
+        "If that's really you, What's our secret keyword? ",
+      ];
+
+      let currentStep = 0;
+      const correctAnswers = {
+        0: ["rahma", "rahouma"],
+        1: ["yes", "y", "oui"],
+        2: ["teenshoky"],
+      };
+
+      const output = document.getElementById("output");
+      const question = document.getElementById("question");
+      const input = document.getElementById("input");
+
+      question.textContent = questions[0];
+
+      input.addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          const answer = this.value.trim().toLowerCase();
+          this.value = "";
+
+          // Show masked output for password
+          const displayAnswer =
+            currentStep === 2 ? "*".repeat(answer.length) : answer;
+          output.innerHTML += `> ${questions[currentStep]}<span style="color:#0f0">${displayAnswer}</span><br>`;
+
+          if (!correctAnswers[currentStep].includes(answer)) {
+            output.innerHTML += `<span style="color:#f00">${
+              currentStep === 0
+                ? "Permission Denied! This is not for you"
+                : "Permission Denied! This page is specially made for Rahma, Don't pretend you're someone you're not!!!"
+            }</span><br>`;
+            this.style.display = "none";
+            question.textContent = "";
+            return;
+          }
+
+          currentStep++;
+
+          if (currentStep >= questions.length) {
+            window.location.href = "Choice.html";
+            return;
+          }
+
+          // Switch to password input for secret keyword
+          if (currentStep === 2) {
+            input.type = "password";
+          } else {
+            input.type = "text";
+          }
+
+          question.textContent = questions[currentStep];
+        }
+      });
+    </script>
+  </body>
+</html>
