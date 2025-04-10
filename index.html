@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Authentication Required</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       body {
         background-color: #000;
@@ -9,17 +10,22 @@
         font-family: "Courier New", monospace;
         margin: 0;
         padding: 20px;
-        height: 100vh;
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
       }
       #terminal {
         max-width: 800px;
         margin: auto;
+        width: 100%;
       }
       .prompt {
         color: #0f0;
         white-space: pre-wrap;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 5px;
       }
       input {
         background: transparent;
@@ -27,11 +33,12 @@
         color: #0f0;
         font-family: "Courier New", monospace;
         font-size: 1em;
-        width: 200px;
+        min-width: 50px;
+        flex: 1;
       }
       input[type="password"] {
-        color: transparent; /* Hide input characters */
-        caret-color: #0f0; /* Keep cursor visible */
+        color: transparent;
+        caret-color: #0f0;
       }
       input:focus {
         outline: none;
@@ -42,6 +49,14 @@
       @keyframes blink {
         50% {
           opacity: 0;
+        }
+      }
+      @media (max-width: 600px) {
+        body {
+          padding: 10px;
+        }
+        input {
+          font-size: 0.9em;
         }
       }
     </style>
@@ -64,6 +79,7 @@
       ];
 
       let currentStep = 0;
+      let attemptsLeft = 3;
       const correctAnswers = {
         0: ["rahma", "rahouma"],
         1: ["yes", "y", "oui"],
@@ -74,7 +90,33 @@
       const question = document.getElementById("question");
       const input = document.getElementById("input");
 
-      question.textContent = questions[0];
+      function typeWriter(text, element, speed, callback) {
+        let i = 0;
+        element.textContent = "";
+        function typing() {
+          if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(typing, speed);
+          } else if (callback) {
+            callback();
+          }
+        }
+        typing();
+      }
+
+      function resetAttempts() {
+        attemptsLeft = 3;
+      }
+
+      function denyAccess(message) {
+        output.innerHTML += `<span style="color:#f00">${message}</span><br>`;
+        input.style.display = "none";
+        question.textContent = "";
+      }
+
+      // Start with first question
+      typeWriter(questions[0], question, 50);
 
       input.addEventListener("keypress", function (e) {
         if (e.key === "Enter") {
@@ -87,16 +129,24 @@
           output.innerHTML += `> ${questions[currentStep]}<span style="color:#0f0">${displayAnswer}</span><br>`;
 
           if (!correctAnswers[currentStep].includes(answer)) {
-            output.innerHTML += `<span style="color:#f00">${
-              currentStep === 0
-                ? "Permission Denied! This is not for you"
-                : "Permission Denied! This page is specially made for Rahma, Don't pretend you're someone you're not!!!"
-            }</span><br>`;
-            this.style.display = "none";
-            question.textContent = "";
+            attemptsLeft--;
+            if (attemptsLeft > 0) {
+              output.innerHTML += `<span style="color:#f00">Incorrect! ${attemptsLeft} attempt(s) left.</span><br>`;
+              typeWriter(questions[currentStep], question, 50, () => {
+                input.focus();
+              });
+            } else {
+              denyAccess(
+                currentStep === 0
+                  ? "Permission Denied! This is not for you"
+                  : "Permission Denied! This page is specially made for Rahma, Don't pretend you're someone you're not!!!"
+              );
+            }
             return;
           }
 
+          // Correct answer
+          resetAttempts();
           currentStep++;
 
           if (currentStep >= questions.length) {
@@ -111,7 +161,10 @@
             input.type = "text";
           }
 
-          question.textContent = questions[currentStep];
+          // Type next question
+          typeWriter(questions[currentStep], question, 50, () => {
+            input.focus();
+          });
         }
       });
     </script>
