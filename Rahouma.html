@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rahma & Youssof - A Love Story</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&family=Playfair+Display:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --rose: #e8a0a0;
+        --deep-rose: #d46a6a;
+        --cream: #fff5f5;
+        --chocolate: #5a3e3e;
+        --gold: #d4af37;
+      }
+
+      /* Base Styles */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: var(--cream);
+        color: var(--chocolate);
+        overflow-x: hidden;
+        min-height: 100vh;
+        scroll-behavior: smooth;
+      }
+
+      /* Floating Hearts */
+      .floating-hearts {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .heart {
+        position: absolute;
+        opacity: 0;
+        animation: float 8s linear infinite;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 0;
+        }
+        20% {
+          opacity: 0.7;
+        }
+        90% {
+          opacity: 0.7;
+        }
+        100% {
+          transform: translateY(-20vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      /* Header */
+      .header-container {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 30px;
+        display: flex;
+        gap: 40px;
+        align-items: center;
+        background: linear-gradient(135deg, #ffebee 0%, #fff5f5 100%);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(212, 106, 106, 0.1);
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+      }
+
+      .header-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(212, 106, 106, 0.2);
+      }
+
+      .her-portrait {
+        width: 350px;
+        height: 350px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 8px solid white;
+        box-shadow: 0 15px 40px rgba(212, 106, 106, 0.3),
+          inset 0 0 20px rgba(255, 255, 255, 0.8);
+        flex-shrink: 0;
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .her-portrait:hover {
+        transform: scale(1.05) rotate(2deg);
+        box-shadow: 0 20px 50px rgba(212, 106, 106, 0.4),
+          inset 0 0 30px rgba(255, 255, 255, 0.9);
+      }
+
+      .love-letter {
+        flex: 1;
+        position: relative;
+        padding-left: 40px;
+      }
+
+      .love-letter::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(to bottom, var(--rose), var(--deep-rose));
+        border-radius: 3px;
+      }
+
+      .love-letter h1 {
+        font-family: "Dancing Script", cursive;
+        color: var(--deep-rose);
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .love-letter p {
+        margin-bottom: 15px;
+        line-height: 1.8;
+        font-size: 1.1rem;
+      }
+
+      .signature {
+        font-family: "Dancing Script", cursive;
+        font-size: 2rem;
+        color: var(--deep-rose);
+        margin-top: 20px;
+        text-align: right;
+      }
+
+      /* Music Player - Now at the top */
+      .music-player-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        position: relative;
+        margin-bottom: 40px;
+      }
+
+      .music-player {
+        background: white;
+        border-radius: 50px;
+        padding: 15px 25px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        z-index: 100;
+        position: sticky;
+        top: 20px;
+        margin: 20px auto;
+        max-width: 400px;
+        transition: all 0.3s ease;
+      }
+
+      .music-player:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(212, 106, 106, 0.2);
+      }
+
+      .play-btn {
+        background: var(--deep-rose);
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        color: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+        font-size: 1.2rem;
+        box-shadow: 0 4px 10px rgba(212, 106, 106, 0.3);
+      }
+
+      .play-btn:hover {
+        background: var(--rose);
+        transform: scale(1.1);
+        box-shadow: 0 6px 15px rgba(212, 106, 106, 0.4);
+      }
+
+      .song-info {
+        flex: 1;
+      }
+
+      .song-title {
+        font-weight: 600;
+        color: var(--deep-rose);
+        font-size: 1.1rem;
+      }
+
+      .artist {
+        font-size: 0.9rem;
+        color: var(--chocolate);
+        opacity: 0.8;
+      }
+
+      /* Timeline */
+      .timeline {
+        max-width: 1200px;
+        margin: 60px auto;
+        padding: 0 20px;
+      }
+
+      .timeline-item {
+        position: relative;
+        padding-left: 150px;
+        margin-bottom: 80px;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+
+      .timeline-item.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .timeline-date {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 120px;
+        text-align: center;
+        background: var(--rose);
+        color: white;
+        padding: 12px;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        font-weight: 600;
+        box-shadow: 0 5px 15px rgba(212, 106, 106, 0.2);
+      }
+
+      .timeline-date:hover {
+        transform: translateY(-5px) scale(1.05);
+        background: var(--deep-rose);
+        box-shadow: 0 8px 20px rgba(212, 106, 106, 0.3);
+      }
+
+      .timeline-content {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+      }
+
+      .timeline-content:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(212, 106, 106, 0.15);
+      }
+
+      .timeline-content h3 {
+        font-family: "Playfair Display", serif;
+        color: var(--deep-rose);
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+        position: relative;
+        display: inline-block;
+      }
+
+      .timeline-content h3::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: var(--rose);
+        border-radius: 3px;
+      }
+
+      .timeline-content p {
+        margin-bottom: 20px;
+        line-height: 1.8;
+        font-size: 1.1rem;
+      }
+
+      .timeline-memory {
+        margin-top: 25px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      /* Gallery */
+      .memory {
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        cursor: pointer;
+        aspect-ratio: 1;
+      }
+
+      .memory::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(212, 106, 106, 0.1),
+          rgba(212, 106, 106, 0.3)
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .memory:hover {
+        transform: translateY(-10px) scale(1.03);
+        box-shadow: 0 15px 40px rgba(212, 106, 106, 0.3);
+      }
+
+      .memory:hover::before {
+        opacity: 1;
+      }
+
+      .memory img,
+      .memory video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Maintain aspect ratio */
+        transition: transform 0.8s ease;
+        pointer-events: auto;
+        position: relative; /* Required for z-index */
+        z-index: 2; /* Higher than the ::before pseudo-element */
+      }
+
+      .memory:hover img,
+      .memory:hover video {
+        transform: scale(1.1);
+      }
+
+      /* Secret Message Section */
+      .secret-message {
+        max-width: 800px;
+        margin: 100px auto;
+        padding: 40px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 15px 40px rgba(212, 106, 106, 0.2);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 1s ease, transform 1s ease;
+      }
+
+      .secret-message.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .secret-message::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 10px;
+        background: linear-gradient(
+          to right,
+          var(--rose),
+          var(--deep-rose),
+          var(--rose)
+        );
+      }
+
+      .secret-message h2 {
+        font-family: "Dancing Script", cursive;
+        color: var(--deep-rose);
+        font-size: 3rem;
+        margin-bottom: 30px;
+        position: relative;
+      }
+
+      .secret-message h2::after {
+        content: "❤️";
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .secret-message p {
+        font-size: 1.2rem;
+        line-height: 2;
+        margin-bottom: 30px;
+      }
+
+      .hidden-message {
+        background: var(--cream);
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 30px;
+        border-left: 5px solid var(--deep-rose);
+        font-style: italic;
+        display: none;
+      }
+
+      .reveal-btn {
+        background: var(--deep-rose);
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(212, 106, 106, 0.3);
+      }
+
+      .reveal-btn:hover {
+        background: var(--rose);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(212, 106, 106, 0.4);
+      }
+
+      /* Footer */
+      footer {
+        background: linear-gradient(to right, var(--rose), var(--deep-rose));
+        color: white;
+        text-align: center;
+        padding: 60px 20px;
+        position: relative;
+      }
+
+      footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 10px;
+        background: linear-gradient(
+          to right,
+          var(--cream),
+          var(--rose),
+          var(--deep-rose),
+          var(--cream)
+        );
+      }
+
+      footer p {
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.8;
+        font-size: 1.1rem;
+      }
+
+      .heart-beat {
+        display: inline-block;
+        animation: heartbeat 1.5s infinite;
+      }
+
+      @keyframes heartbeat {
+        0% {
+          transform: scale(1);
+        }
+        25% {
+          transform: scale(1.1);
+        }
+        50% {
+          transform: scale(1);
+        }
+        75% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .header-container {
+          flex-direction: column;
+          text-align: center;
+          padding: 20px;
+        }
+
+        .her-portrait {
+          width: 250px;
+          height: 250px;
+        }
+
+        .love-letter {
+          padding-left: 0;
+          padding-top: 30px;
+        }
+
+        .love-letter::before {
+          left: 50%;
+          transform: translateX(-50%);
+          width: 60%;
+          height: 3px;
+          top: 0;
+        }
+
+        .timeline-item {
+          padding-left: 0;
+          padding-top: 80px;
+        }
+
+        .timeline-date {
+          width: 100%;
+          top: 0;
+        }
+
+        .music-player {
+          max-width: 90%;
+        }
+      }
+
+      /* Scrollbar styling */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--cream);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--rose);
+        border-radius: 10px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--deep-rose);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="floating-hearts" id="hearts-container"></div>
+
+    <!-- Music Player at the Top -->
+    <div class="music-player-container">
+      <div class="music-player">
+        <button class="play-btn" id="playBtn">▶</button>
+        <div class="song-info">
+          <div class="song-title">Our Special Song</div>
+          <div class="artist">Play as you scroll through our love story</div>
+        </div>
+        <audio
+          id="ourSong"
+          src="song/Adele - Lovesong.mp3"
+          preload="metadata"
+        ></audio>
+      </div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="header-container">
+      <img
+        src="img/rahouma6.jpg"
+        alt="My Beautiful Rahma"
+        class="her-portrait"
+      />
+      <div class="love-letter">
+        <h1>To My Eternal Love</h1>
+        <p>My Dearest Rahma,</p>
+        <p>
+          As I put together these memories, I'm reminded of how every moment
+          with you feels like a page from the most beautiful love story. Each
+          glance, each laugh, each quiet moment together is a treasure I hold
+          close to my heart.
+        </p>
+        <p>
+          This collection represents just a fraction of the happiness you've
+          brought into my life. As you scroll through our timeline, know that
+          every photograph, every memory is a testament to the love that grows
+          stronger with each passing day.
+        </p>
+        <p>
+          Play our song, let it accompany you as you journey through our story,
+          and discover the secret message waiting for you at the end.
+        </p>
+        <div class="signature">Forever yours,<br />Youssof</div>
+      </div>
+    </header>
+
+    <!-- Timeline Section -->
+    <section class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date">8 July 2023</div>
+        <div class="timeline-content">
+          `
+          <h3>The Day We Met</h3>
+          <p>
+            The day destiny brought us together. I still remember how the world
+            seemed to pause when our eyes first met. Your smile lit my world up,
+            and in that moment, I knew my life would never be the same.
+          </p>
+          <div class="timeline-memory">
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-03-25 at 16.00.31_827a2d54.jpg"
+                alt="Our First Meeting"
+              />
+            </div>
+            <div class="memory">
+              <video
+                controls
+                style="position: relative; z-index: 2; pointer-events: auto"
+              >
+                <source
+                  src="img/WhatsApp Video 2025-03-25 at 16.00.40_0fa6e72d.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">July 2022</div>
+        <div class="timeline-content">
+          <h3>Our First Meetings</h3>
+          <p>
+            That magical evening when we talked for hours, losing track of time.
+            I was captivated by your laughter, your intelligence, and the way
+            your eyes sparkled. Your smile, it shook my whole existence apart!
+          </p>
+          <div class="timeline-memory">
+            <div class="memory">
+              <img src="img/1stt.jpg" alt="Our First Date" />
+            </div>
+            <div class="memory">
+              <img src="img/2ndd.jpg" alt="First Date Memories" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">3 August 2023</div>
+        <div class="timeline-content">
+          <h3>Our First Concert Together</h3>
+          <p>
+            That night I fell in love all over again—for the second time,
+            I let myself be captivated by you to the exquisite notes of Massar Egbari’s melodies. 
+            I’ll never forget how you danced like no one was watching
+            The way you closed your eyes during your favorite songs, how you grabbed my hand when the crowd cheered, 
+            how the stage lights painted your face in gold and shadow—it was poetry in motion.
+            Between the bass vibrating in our chests and your off-key singing (adorably terrible, by the way), 
+            I realized concerts are infinitely better when you’re next to me. 
+            That night wasn’t just about the music; it was about the way time blurred, the way your laughter cut through the noise,
+            and how, for these perfect hours, the universe seemed to hum in tune with us. <br> <br>
+            P.S. – Still waiting for you to teach me those dance moves. Or at least explain them. :)
+          </p>
+          <div class="timeline-memory">
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-03-25 at 15.56.11_9e9564aa.jpg"
+                alt="Our Adventure"
+              />
+            </div>
+            <div class="memory">
+              <video controls>
+                <source src="img/conc1.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="memory">
+              <video controls>
+                <source src="img/conc2.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">6 August 2023</div>
+        <div class="timeline-content">
+          <h3>Our First Adventure</h3>
+          <p>
+            A movie, coffee cups with our names (almost spelled right),
+            and dinner by the sea—just another day that felt like magic because it was with you. 
+            Remember when you showed me how if we ate from each others food we would chase each other (in an attempt to justify stealing my food :) ? 
+  
+          </p>
+          <div class="timeline-memory">
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-04-08 at 03.52.08_23882010.jpg"
+                alt="Our Adventure"
+              />
+            </div>
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-04-08 at 03.53.06_b0595cf1.jpg"
+                alt="Adventure Memories"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">10 September 2023</div>
+        <div class="timeline-content">
+          <h3>Our First "يلاهوى يا جوجو انا مبعرفش اعوم" Moment</h3>
+          <p>
+            That morning at the beach when I totally volunteered to teach you how to swim—not at all because I wanted an excuse to hold you close, feel your skin against mine, and steal hugs between the waves. (Okay, maybe a little.) 
+            You laughed every time you "almost drowned," clinging to me dramatically, and I didn't mind one bit.
+            <br><br>
+            P.S. – Best. Swimming lesson. Ever. (Let’s do it again. Please?)
+          </p>
+          <div class="timeline-memory">
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-03-25 at 16.00.32_6f3d7846.jpg"
+                alt="Our Adventure"
+              />
+            </div>
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-04-08 at 03.05.13_81c0cd81.jpg"
+                alt="Adventure Memories"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">11 September 2023</div>
+        <div class="timeline-content">
+          <h3>Three Words, Two Cups, One Beginning.</h3>
+          <p>
+            That quiet cafe moment when we finally said what we both knew.<br>
+            No fanfare, just us - your hands in mine, our hearts speaking louder than words. The night ordinary coffee became unforgettable.
+          </p>
+          <div class="timeline-memory">
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-03-25 at 16.00.32_12220c4c.jpg"
+                alt="Our First Date"
+              />
+            </div>
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-03-25 at 16.00.33_38b40bc1.jpg"
+                alt="First Date Memories"
+              />
+            </div>
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-03-25 at 16.00.32_7e3ba93e.jpg"
+                alt="First Date Memories"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">7 October 2023</div>
+        <div class="timeline-content">
+          <h3>The Day Cairo Met Its Light</h3>
+          <p>
+            The city didn’t know what hit it when you arrived—Cairo blinked awake under your glow, 
+            and suddenly every street, 
+            every noise, every breath of dust felt electric. 
+            Because you were there.
+            We savored rich coffee and spiced flavors, You stole my shirt with such casual way (I almost believed it was yours all along). 
+            and we climbed the Cairo Tower just to watch the city sprawl beneath us—though all I saw was you,
+            wind tugging at your hair 
+            But the true magic came when our lips finally met – that first kiss where time stopped. 
+            Your breath mingling with mine, your warmth seeping into my skin, 
+            your very essence becoming my new definition of paradise.
+            In that moment, Cairo's ancient wonders paled beside the miracle of you.
+            <br><br>
+            P.S. – Still waiting for that shirt back. <br>
+            (Just kidding. Keep it. That shirt still looks better on you. Just like my heart fits better in your hands. :) )
+
+          </p>
+          <div class="timeline-memory">
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-03-25 at 16.00.39_19bda1c1.jpg"
+                alt="Our Adventure"
+              />
+            </div>
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-03-25 at 16.00.36_78dd3038.jpg"
+                alt="Adventure Memories"
+              />
+            </div>
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-03-25 at 16.00.36_ae0bdce5.jpg"
+                alt="Adventure Memories"
+              />
+            </div>
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-03-25 at 16.00.37_d3775540.jpg"
+                alt="Adventure Memories"
+              />
+            </div>
+            <div class="memory">
+              <video controls>
+                <source
+                  src="img/WhatsApp Video 2025-03-25 at 16.00.40_b2c694af.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-03-25 at 16.00.36_e18c5b5e.jpg"
+                alt="Adventure Memories"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">8 October 2023</div>
+        <div class="timeline-content">
+          <h3>An Unexpected Morning</h3>
+          <p>
+            A simple cinema trip turned into magic when we spontaneously stumbled upon Alexandria's Roman Theatre. 
+            The morning sun lit up the ancient stones as we explored, 
+            laughing at our unplanned adventure. Just us, history, 
+            and the thrill of discovering beauty together.
+
+            <br><br>P.S. – Best random detour ever.
+            <br><br>Oh and don't think that I ever forgot that mark you left on my neck! 
+          </p>
+          <div class="timeline-memory">
+            <div class="memory">
+              <img src="img/ad1.jpg" alt="Our Adventure" />
+            </div>
+            <div class="memory">
+              <img src="img/ad22.jpg" alt="Adventure Memories" />
+            </div>
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-04-08 at 03.26.34_7194fd7d.jpg"
+                alt="Adventure Memories"
+              />
+            </div>
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-04-08 at 04.12.52_dfe0683e.jpg"
+                alt="Adventure Memories"
+              />
+            </div>
+            <div class="memory">
+              <video controls>
+                <source
+                  src="img/WhatsApp Video 2025-04-08 at 03.26.34_e81e09f7.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">28 April 2024</div>
+        <div class="timeline-content">
+          <h3>Time Travelers for a Day</h3>
+          <p>
+            We got lost between ancient statues and faded mosaics at the Greco-Roman Museum, 
+            whispering jokes about mythological dramas like we belonged there. 
+            You looked at artifacts – I just looked at you.
+          </p>
+          <div class="timeline-memory">
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-03-25 at 15.56.14_be46fe79.jpg"
+                alt="Christmas Together"
+              />
+            </div>
+            <div class="memory">
+              <img src="img/rahoumaheaderrr.jpg" alt="Christmas Memories" />
+            </div>
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-03-25 at 15.56.13_302c9a24.jpg"
+                alt="Christmas Memories"
+              />
+            </div>
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-03-25 at 15.56.14_514a1364.jpg"
+                alt="Christmas Memories"
+              />
+            </div>
+            <div class="memory">
+              <video controls>
+                <source src="img/rahoumamuseammm.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="memory">
+              <video controls>
+                <source src="img/rahoumasmile.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">3 May 2024</div>
+        <div class="timeline-content">
+          <h3>A Simple Perfect Day</h3>
+          <p>
+            Movie tickets in hand, 
+            coffee cups on the table - just an ordinary day made extraordinary because it was with you. 
+            No grand plans, just us being happily us.
+
+          </p>
+          <div class="timeline-memory">
+            <div class="memory">
+              <img src="img/rahouma2.jpg" alt="Christmas Together" />
+            </div>
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-03-25 at 15.56.13_543f0b85.jpg"
+                alt="Christmas Memories"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">8 May 2024</div>
+        <div class="timeline-content">
+          <h3>The Surprise That Healed Everything</h3>
+          <p>
+            That exhausted evening after my exam, 
+            when you appeared like a miracle in our place as a surprise for my birthday. 
+            You’d planned it all with my sister—dinner by the Nile, 
+            but the most healing part was the car ride to the restaurant. 
+            Your head resting in my lap, my fingers tangled in your hair, the world softening around us. 
+            I didn’t just fall in love with you that moment—I recognized home.
+
+          </p>
+          <div class="timeline-memory">
+            <div class="memory">
+              <img src="img/rahouma12.jpg" alt="Christmas Together" />
+            </div>
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-03-25 at 15.56.12_828a112a.jpg"
+                alt="Christmas Memories"
+              />
+            </div>
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-03-25 at 15.56.12_94c79a97.jpg"
+                alt="Christmas Memories"
+              />
+            </div>
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-03-25 at 16.05.11_3a67b12c.jpg"
+                alt="Christmas Memories"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">25 May 2024</div>
+        <div class="timeline-content">
+          <h3>Ms. Perfect Knees ;) </h3>
+          <p>
+            That simple dinner when you charmed my mom between bites of home-cooked food—watching your nervous smile soften into laughter as the conversation flowed. 
+            No grand gestures, just the quiet magic of my two favorite people getting along.
+            <br><br>
+            P.S. – Mom still asks when you’re coming back. (I do too.)
+          </p>
+          <div class="timeline-memory">
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-04-08 at 04.29.16_a5f87021.jpg"
+                alt="Christmas Together"
+              />
+            </div>
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-04-08 at 04.29.16_db359cca.jpg"
+                alt="Christmas Memories"
+              />
+            </div>
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-04-08 at 04.29.17_5c178824.jpg"
+                alt="Christmas Memories"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">30 May 2024</div>
+        <div class="timeline-content">
+          <h3>The Drive I'll Never Forget</h3>
+          <p>
+            That day when the ordinary became extraordinary—driving you back to the station, 
+            your hand in mine, our laughter mixing with our favorite songs. 
+            Between stolen kisses and silly dance moves in the car, 
+            time slipped away too fast. (And the pain to let you go back)
+            <br><br>
+            P.S. – I still turn up the songs we listened to just to feel you there beside me again.
+          </p>
+          <div class="timeline-memory">
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-04-08 at 04.30.11_ba54fbb0.jpg"
+                alt="Christmas Together"
+              />
+            </div>
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-04-08 at 04.30.12_274b0e82.jpg"
+                alt="Christmas Memories"
+              />
+            </div>
+            <div class="memory">
+              <video controls>
+                <source
+                  src="img/WhatsApp Video 2025-03-25 at 15.56.15_04699606.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">13 July 2024</div>
+        <div class="timeline-content">
+          <h3>A Day of Laughs and Little Victories</h3>
+          <p>
+            You came to my city, 
+            and suddenly everything was fun. 
+            Bowling (I won!), 
+            racing, 
+            ice hockey battles, 
+            and that beautiful art place—every moment with you felt like magic in motion.
+          </p>
+          <div class="timeline-memory">
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-04-08 at 04.32.29_dab90ac3.jpg"
+                alt="Christmas Together"
+              />
+            </div>
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-04-08 at 04.32.30_2c71eef8.jpg"
+                alt="Christmas Memories"
+              />
+            </div>
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-04-08 at 04.32.31_d4305888.jpg"
+                alt="Christmas Together"
+              />
+            </div>
+            <div class="memory">
+              <img src="img/rahouma1.jpg" alt="Christmas Together" />
+            </div>
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-04-08 at 04.32.33_247fb642.jpg"
+                alt="Christmas Together"
+              />
+            </div>
+            <div class="memory">
+              <video controls>
+                <source
+                  src="img/WhatsApp Video 2025-04-08 at 04.32.34_0bc8a2e2.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+        </div>
+
+       <!-- <div class="timeline-item">
+           <div class="timeline-date">30 May 2024</div>
+          <div class="timeline-content">
+            <h3>First Christmas Together</h3>
+            <p>
+              Waking up next to you on Christmas morning, watching the snow fall
+              gently outside, I realized I'd received the greatest gift possible
+              - your love. The way you smiled when you opened my present still
+              makes my heart skip a beat.
+            </p>
+          </div> -->
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">23 September 2024</div>
+        <div class="timeline-content">
+          <h3>You said YESS!</h3>
+          <p>
+            I showed up in your city with a plan—dinner, 
+            cake, birthday songs, and then… the proposal. 
+            It didn’t go how I imagined and I looked funny (the street wasn’t part of the plan) sorry about that,
+            but you smiled, said yes, 
+            and made it the best “mess” of my life.
+            
+
+          </p>
+          <div class="timeline-memory">
+            <div class="memory">
+              <img
+                src="img/WhatsApp Image 2025-04-08 at 04.35.08_b0e7e2ca.jpg"
+                alt="Our First Date"
+              />
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        
+        <div class="timeline-content">
+          <h3>الجزء ده مش محن خالص (انى اسف :/ )</h3>
+ 
+          <div class="timeline-memory">
+            <div class="memory">
+              <video controls>
+                <source
+                  src="img/secret.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="memory">
+              <video controls>
+                <source
+                  src="img/secret2.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+
+    <!-- Secret Message Section -->
+    <section class="secret-message" id="secretMessage">
+      <h2>A Secret Just For You</h2>
+      <p>
+        You've reached the end of our journey so far, but this is just the
+        beginning of our forever.
+      </p>
+      <p>
+        Every day with you is a blessing I never take for granted. Your love has
+        transformed my life in ways I never imagined possible.
+      </p>
+      <button class="reveal-btn" id="revealBtn">
+        Reveal My Secret Message
+      </button>
+      <div class="hidden-message" id="hiddenMessage">
+        <p>
+          My darling Rahma,<br /><br />
+          You’ve just won an exclusive “Pick Anything You Want” shopping voucher—sponsored by me, with love 😘 <br /><br />
+          But there’s one small condition...<br /><br />
+          Will you let me see you again?
+          I miss you. And I want to make you smile in person—one gift at a time 💛<br /><br />
+          <br>
+          With all my love,<br />
+          Youssof
+        </p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>
+        You are my today and all of my tomorrows <br />
+        Scan this QR code anytime to revisit our love story <br />
+        Thank you for being my always and forever.
+        <span class="heart-beat">❤️</span>
+      </p>
+    </footer>
+
+    <script>
+      // Floating Hearts
+      function createHearts() {
+        const container = document.getElementById("hearts-container");
+        for (let i = 0; i < 20; i++) {
+          const heart = document.createElement("div");
+          heart.className = "heart";
+          heart.innerHTML = "❤️";
+          heart.style.left = `${Math.random() * 100}%`;
+          heart.style.fontSize = `${Math.random() * 20 + 15}px`;
+          heart.style.animationDuration = `${Math.random() * 5 + 5}s`;
+          heart.style.animationDelay = `${Math.random() * 5}s`;
+          container.appendChild(heart);
+        }
+      }
+
+      // Music Player
+      const playBtn = document.getElementById("playBtn");
+      const audio = document.getElementById("ourSong");
+      audio.volume = 0.4;
+
+      playBtn.addEventListener("click", () => {
+        if (audio.paused) {
+          audio.play();
+          playBtn.textContent = "⏸";
+        } else {
+          audio.pause();
+          playBtn.textContent = "▶";
+        }
+      });
+
+      // Scroll Animation for Timeline Items
+      function checkVisibility() {
+        const timelineItems = document.querySelectorAll(".timeline-item");
+        timelineItems.forEach((item) => {
+          const rect = item.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 100) {
+            item.classList.add("visible");
+          }
+        });
+
+        // Check secret message visibility
+        const secretMessage = document.getElementById("secretMessage");
+        const secretRect = secretMessage.getBoundingClientRect();
+        if (secretRect.top < window.innerHeight - 100) {
+          secretMessage.classList.add("visible");
+        }
+      }
+
+      // Reveal Secret Message
+      const revealBtn = document.getElementById("revealBtn");
+      const hiddenMessage = document.getElementById("hiddenMessage");
+
+      revealBtn.addEventListener("click", () => {
+        hiddenMessage.style.display = "block";
+        revealBtn.style.display = "none";
+        hiddenMessage.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+
+      // Double Click Heart Effect
+      document.addEventListener("dblclick", (e) => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = `${e.clientX}px`;
+        heart.style.top = `${e.clientY}px`;
+        heart.style.position = "fixed";
+        heart.style.fontSize = "30px";
+        heart.style.animation = "float 3s linear";
+        heart.style.pointerEvents = "none";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 3000);
+      });
+
+      // Initialize
+      window.onload = () => {
+        createHearts();
+        checkVisibility();
+        window.addEventListener("scroll", checkVisibility);
+
+        // Add smooth hover effects to all memories
+        document.querySelectorAll(".memory").forEach((media) => {
+          media.addEventListener("mouseenter", () => {
+            media.style.transform = "translateY(-10px) scale(1.03)";
+          });
+          media.addEventListener("mouseleave", () => {
+            media.style.transform = "translateY(0) scale(1)";
+          });
+        });
+      };
+    </script>
+  </body>
+</html>
